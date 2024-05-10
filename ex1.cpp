@@ -4,7 +4,7 @@ class Circulo{
     private:
         float raio;
     public:
-        Circulo(float r){
+        Circulo(float r){//Construtor(n sei oq e)
             raio=r;
         }
         float CalcularArea(){

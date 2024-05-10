@@ -31,6 +31,7 @@ int main(){
     std::cout<<"Digite a largura:";
     std::cin>>largura;
     Retangulo retangulo;
+    retangulo.set(largura,altura);
     std::cout<<"A area do retangulo:"<<retangulo.CalcularArea()<<"\n";
     std::cout<<"O perimetro do retangulo"<<retangulo.CalcularPerimetro()<<"\n";
     return 0;

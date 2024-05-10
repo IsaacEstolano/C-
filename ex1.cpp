@@ -1,29 +1,32 @@
 #include <iostream>
 
 class Circulo{
-    private:
-        float raio;
     public:
-        Circulo(float r){//Construtor(n sei oq e)
-            raio=r;
+        Circulo(){//Construtor(n sei oq e)
         }
+        ~Circulo(){//Destrutor
+        }
+
         float CalcularArea(){
             return 3.14 *raio*raio;
         }
         float CalcularPerimetro(){
             return 2*3.14*raio;
         }
+        void set(float _raio){
+            raio=_raio;
+        }
+    private:
+        float raio;
 };
 
-int main(){
+void main(){
+    Circulo circulo;
     float raio;
     std::cout<<"Digite o raio:";
     std::cin>>raio;
-    Circulo MeuCirculo(raio);
-    std::cout<<"Area do Circulo:"<<MeuCirculo.CalcularArea() <<std::endl;
-    std::cout<<"Perimetro do Circulo:"<<MeuCirculo.CalcularPerimetro()<<std::endl;
+    circulo.set(raio);
+    std::cout<<"Area do Circulo:"<<circulo.CalcularArea() <<"\n";
+    std::cout<<"Perimetro do Circulo:"<<circulo.CalcularPerimetro()<<"\n";
 
-
-
-    return 0;
 }

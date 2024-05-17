@@ -7,7 +7,7 @@ public:
     ~Aluno() {}
 
     float CalcularMedia() {
-        if (QuantidadeNota == 0) return 0; // Evitar divisão por zero
+        if (QuantidadeNota == 0) return 0; 
         return ArmazenaNota / QuantidadeNota;
     }
 
@@ -19,7 +19,7 @@ public:
     void MostrarDados() {
         std::cout << "Nome: " << Nome << std::endl;
         std::cout << "Matricula: " << Matricula << std::endl;
-        std::cout << "Media: " << CalcularMedia() << std::endl; // Chamar o método CalcularMedia() para obter a média
+        std::cout << "Media: " << CalcularMedia() << std::endl; 
     }
 
     void set(float _Matricula, std::string _Nome, float _Nota) {
@@ -51,15 +51,13 @@ int main() {
     int QuantidadeNotas;
     std::cin >> QuantidadeNotas;
 
-    aluno.set(Matricula, Nome, 0); // Inicializar o aluno
-
+    aluno.set(Matricula, Nome, 0); 
     for (int i = 0; i < QuantidadeNotas; ++i) {
         std::cout << "Digite sua nota: ";
         std::cin >> Nota;
-        aluno.AdicionarNota(Nota); // Adicionando a nota ao aluno
-    }
+        aluno.AdicionarNota(Nota); 
 
-    aluno.MostrarDados(); // Exibindo os dados do aluno, incluindo a média
+    aluno.MostrarDados(); 
 
     return 0;
 }

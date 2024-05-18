@@ -3,20 +3,19 @@
 
 class Funcionario{
     public:
-        Funcionario(){
-
+        Funcionario(const std::string& _nome,float _salario)
+            :nome(_nome),salario(_salario),salarioAumento(_salario),ganhoAnual(0)
+        {
         }
         ~Funcionario(){
         }
-        float addAumento(double valor,float salarioAumento){
+        void addAumento(double valor){
             std::cout<<"Digite quanto de aumento ira receber:";
             std::cin>>valor;
             salarioAumento=salario+valor;
-            return salarioAumento;
         }
-        float ganhoAnual(float ganhoAnual,double valor){
+        void calcularGanhoAnual(){
             ganhoAnual=salarioAumento*12;
-            return ganhoAnual;
         }
         void mostrarDados(){
             std::cout<<"Nome:"<<nome<<std::endl;
@@ -24,11 +23,15 @@ class Funcionario{
             std::cout<<"Salario com aumento:"<<salarioAumento<<std::endl;
             std::cout<<"Ganho anual:"<<ganhoAnual<<std::endl;
         }
+        void setTudo(const std::string& _nome,float _salario){
+            nome=_nome;
+            salario=_salario;
+        }
     private:
         std::string nome;
-        float salario;
-        float salarioAumento;
-        float ganhoAnual;
+        float salario=0;
+        float salarioAumento=0;
+        float ganhoAnual=0;
 };
 int main(){
     std::string nome;
@@ -37,10 +40,9 @@ int main(){
     std::cin>>nome;
     std::cout<<"Digite seu salario:";
     std::cin>>salario;
-    Funcionario funcionario;
-    float valor=0;
-    float salarioAumento=0;
-    funcionario.addAumento(valor,salarioAumento);
+    Funcionario funcionario(nome,salario);
+    funcionario.addAumento(0);
+    funcionario.calcularGanhoAnual();
     funcionario.mostrarDados();
     return 0;
 }

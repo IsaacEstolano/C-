@@ -46,20 +46,18 @@ class Assistente :public Funcionario{
             return numeroMatricula;
 
         }
-        void mostrarDados(){
-            std::cout<<"Nome:"<<nome<<std::endl;
-            std::cout<<"Salario:"<<salario<<std::endl;
-            std::cout<<"SalarioAumento:"<<salarioAumento<<std::endl;
-            std::cout<<"Ganho Anual:"<<ganhoAnual<<std::endl;
+        void mostrarDados (){
+            Funcionario::mostrarDados();
             std::cout<<"Numero Matricula:"<<numeroMatricula<<std::endl;
         }
-        private:
+        protected:
         std::string numeroMatricula;
 
 };
 class Tecnico :public Assistente{
     public:
-    
+     Tecnico(const std::string& _nome, float _salario, const std::string& _numeroMatricula)
+        :Assistente(_nome, _salario,_numeroMatricula) {}
     void bonusSalario(){
         std::cout<<"Digite o bonus salarial:";
         std::cin>>bonusValor;
@@ -67,8 +65,21 @@ class Tecnico :public Assistente{
     void calculoBonus(){
         salario+=bonusValor;
     }
+    void mostrarDados(){
+       Assistente::mostrarDados();
+    }
     private:
     float bonusValor;
+};
+class Admnistrativo :public Assistente{
+    public:
+     Admnistrativo(const std::string& _nome, float _salario, const std::string& _numeroMatricula)
+        :Assistente(_nome, _salario,_numeroMatricula) {}
+
+
+
+    protected:
+        
 };
 int main(){
     std::string nome;
@@ -81,18 +92,33 @@ int main(){
     std::cin>>salario;
     std::cout<<"Digite seu numero de matricula:";
     std::cin>>numeroMatricula;
-    std::cout<<"Digite 0 se for Assistente Tecnico e 1 se for Assistente Administrativo";
+    std::cout<<"Digite 0 para funcionario comum,1 para Assistente Tecnico,2 para Assistente Administrativo e 3 para Assistente comum:";
     std::cin>>AT;
-    Tecnico tecnico(salario,AT);
-    if (AT==0)
+    if (AT==0){
+        Funcionario funcionario(nome,salario);
+        funcionario.addAumento(0);
+        funcionario.calcularGanhoAnual();
+        funcionario.mostrarDados();
+    }
+
+    if (AT==1)
     {
+        Tecnico tecnico(nome,salario,numeroMatricula);
+        tecnico.bonusSalario();
+        tecnico.calculoBonus();
+        tecnico.calcularGanhoAnual();
+        tecnico.mostrarDados();
         
     }
+    if(AT==2){
+
+    }
+    if(AT==3){
+        Assistente assistente(nome,salario,numeroMatricula);
+        assistente.addAumento(0);
+        assistente.calcularGanhoAnual();
+        assistente.mostrarDados();
+    }
     
-    Funcionario funcionario(nome,salario);
-    Assistente assistente(nome,salario,numeroMatricula);
-    assistente.addAumento(0);
-    assistente.calcularGanhoAnual();
-    assistente.mostrarDados();
     return 0;
 }

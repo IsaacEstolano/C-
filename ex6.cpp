@@ -14,6 +14,16 @@ class Funcionario{
             std::cin>>valor;
             salarioAumento=salario+valor;
         }
+         void addBonus(double bonusSalarial){
+            std::cout<<"Digite o bonus salarial:";
+            std::cin>>bonusSalarial;
+            salarioAumento=salario+bonusSalarial;
+        }
+        void addAdicionalN(double adicionalN){
+            std::cout<<"Digite o adicional noturno:";
+            std::cin>>adicionalN;
+            salarioAumento=salario+adicionalN;
+        }
         void calcularGanhoAnual(){
             ganhoAnual=salarioAumento*12;
         }
@@ -58,27 +68,29 @@ class Tecnico :public Assistente{
     public:
      Tecnico(const std::string& _nome, float _salario, const std::string& _numeroMatricula)
         :Assistente(_nome, _salario,_numeroMatricula) {}
-    void bonusSalario(){
-        std::cout<<"Digite o bonus salarial:";
-        std::cin>>bonusValor;
-    }
+    
     void calculoBonus(){
-        salario+=bonusValor;
+        Funcionario::addBonus(0);
     }
     void mostrarDados(){
        Assistente::mostrarDados();
     }
     private:
-    float bonusValor;
 };
 class Admnistrativo :public Assistente{
     public:
      Admnistrativo(const std::string& _nome, float _salario, const std::string& _numeroMatricula)
         :Assistente(_nome, _salario,_numeroMatricula) {}
 
+    void calculoAdicionalN(){
+        Funcionario::addAdicionalN(0);
+    }
 
+    void mostrarDados(){
+        Assistente::mostrarDados();
+    }
 
-    protected:
+    private:
         
 };
 int main(){
@@ -104,14 +116,25 @@ int main(){
     if (AT==1)
     {
         Tecnico tecnico(nome,salario,numeroMatricula);
-        tecnico.bonusSalario();
         tecnico.calculoBonus();
         tecnico.calcularGanhoAnual();
         tecnico.mostrarDados();
         
     }
     if(AT==2){
-
+        float turno;
+        std::cout<<"Digite 0 se seu turno e de dia e 1 para noite:";
+        std::cin>>turno;
+        Admnistrativo administrativo(nome,salario,numeroMatricula);
+            if(turno==1){
+                administrativo.calculoAdicionalN();
+                administrativo.calcularGanhoAnual();
+                administrativo.mostrarDados();
+            }
+            else{
+                administrativo.calcularGanhoAnual();
+                administrativo.mostrarDados();
+            }
     }
     if(AT==3){
         Assistente assistente(nome,salario,numeroMatricula);
